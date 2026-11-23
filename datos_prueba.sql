@@ -7,11 +7,11 @@ PRAGMA foreign_keys = ON;
 INSERT INTO Cliente
 (CUIT, RazonSocial, Domicilio, Localidad, CP, Celular, Email, Fecha_Alta)
 VALUES
-('00000000001', 'CLIENTE DE PRUEBA 1', 'DOMICILIO DE PRUEBA 1', 'LOCALIDAD DE PRUEBA', '0000', NULL, 'cliente1@example.com', datetime('now')),
-('00000000002', 'CLIENTE DE PRUEBA 2', 'DOMICILIO DE PRUEBA 2', 'LOCALIDAD DE PRUEBA', '0000', NULL, 'cliente2@example.com', datetime('now')),
-('00000000003', 'CLIENTE DE PRUEBA 3', 'DOMICILIO DE PRUEBA 3', 'LOCALIDAD DE PRUEBA', '0000', NULL, 'cliente3@example.com', datetime('now')),
-('00000000004', 'CLIENTE DE PRUEBA 4', 'DOMICILIO DE PRUEBA 4', 'LOCALIDAD DE PRUEBA', '0000', NULL, 'cliente4@example.com', datetime('now')),
-('00000000005', 'CLIENTE DE PRUEBA 5', 'DOMICILIO DE PRUEBA 5', 'LOCALIDAD DE PRUEBA', '0000', NULL, 'cliente5@example.com', datetime('now'));
+('23111222333', 'DISTRIBUIDORA DEL OESTE', 'SAN MARTIN 450', 'LUJAN', '6700', '541123456789', 'Ventas@Distribuidora.com', datetime('now')),
+('23222333444', 'COMERCIAL NORTE', 'RIVADAVIA 120', 'MERCEDES', '6600', '541134567890', 'contacto@ComercialNorte.com', datetime('now')),
+('20333444555', 'JUAN PEREZ', 'BELGRANO 780', 'LUJAN', '6700', '541145678901', 'Juan.Perez@gmail.com', datetime('now')),
+('27444555666', 'MARIA GONZALEZ', 'MITRE 250', 'GENERAL RODRIGUEZ', '1748', NULL, 'Maria.Gonzalez@hotmail.com', datetime('now')),
+('30555666777', 'FERRETERIA CENTRAL', 'MORENO 990', 'LUJAN', '6700', '541156789012', NULL, datetime('now'));
 
 -- =====================================
 -- PRODUCTOS
@@ -33,9 +33,9 @@ VALUES
 INSERT INTO Pedidos_Cabecera
 (ID_Pedido, Fecha_Hora, CUIT, Operador, Estado)
 VALUES
-(1, datetime('now'), '00000000001', 'ADMIN', 'PENDIENTE'),
-(2, datetime('now'), '00000000001', 'ADMIN', 'CONFIRMADO'),
-(3, datetime('now'), '00000000003', 'ADMIN', 'ACEPTADO');
+(1, datetime('now'), '23111222333', 'ADMIN', 'PENDIENTE'),
+(2, datetime('now'), '23111222333', 'ADMIN', 'CONFIRMADO'),
+(3, datetime('now'), '20333444555', 'ADMIN', 'ACEPTADO');
 
 -- =====================================
 -- PEDIDOS - DETALLE
