@@ -1,0 +1,9 @@
+bin/
+obj/
+.vs/
+.verificacion/
+*.user
+*.db
+*.db-*
+*.db.bak
+*.log

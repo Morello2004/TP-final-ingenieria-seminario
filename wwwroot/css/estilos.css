@@ -1,0 +1,327 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    color: #222;
+}
+
+h1 {
+    margin: 0;
+    padding: 20px;
+    background: #222;
+    color: white;
+}
+
+nav {
+    padding: 10px 20px;
+    background: #333;
+}
+
+nav button {
+    padding: 10px 18px;
+    margin-right: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+/* oculta los formularios que no estan seleccionados en la navegacion */
+.seccion {
+    display: none;
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 25px;
+    background: white;
+    border: 1px solid #ddd;
+}
+
+.seccion.activa {
+    display: block;
+}
+
+/* distribuye las etiquetas y sus campos en dos columnas */
+form {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 12px;
+    align-items: center;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #aaa;
+}
+
+form > button {
+    grid-column: 2;
+    padding: 10px;
+    cursor: pointer;
+}
+
+table {
+    grid-column: 1 / -1;
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th,
+td {
+    padding: 8px;
+    border: 1px solid #ccc;
+    text-align: left;
+}
+
+th {
+    background: #eee;
+}
+
+h3 {
+    grid-column: 1 / -1;
+}
+
+#mensaje,
+#mensajeProducto,
+#mensajePedido {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+/* diferencia visualmente los mensajes de error de las confirmaciones */
+.mensaje-error {
+    color: #b00020;
+    background: #ffe5e5;
+    border: 2px solid #b00020;
+    padding: 12px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.mensaje-exito {
+    color: #146c2e;
+    background: #e5f6e9;
+    border: 2px solid #146c2e;
+    padding: 12px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* ubica las sugerencias debajo del campo que las genera */
+.campo-busqueda {
+    position: relative;
+}
+
+.coincidencias {
+    position: absolute;
+    width: 100%;
+    background: white;
+    border: 1px solid #aaa;
+    z-index: 10;
+}
+
+.coincidencia {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.coincidencia:hover {
+    background: #eee;
+}
+
+/* resalta el campo que necesita una correccion antes del envio */
+.campo-error {
+    border: 2px solid #b00020 !important;
+    background: #ffe5e5 !important;
+    outline: none;
+}
+
+.campo-error:focus {
+    border: 2px solid #b00020 !important;
+    background: #ffd6d6 !important;
+    box-shadow: 0 0 0 3px rgba(176, 0, 32, 0.20);
+}
+
+
+/* limita el tamano del buscador de clientes y permite desplazar sus resultados */
+#dialogoClientes {
+    width: min(90%, 550px);
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: 24px;
+    border: 1px solid #888;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+#dialogoClientes::backdrop {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+#filtroClientes {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 12px 0;
+    padding: 10px;
+}
+
+#resultadosClientes {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 16px;
+}
+
+.resultado-cliente {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 6px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.resultado-cliente:hover {
+    filter: brightness(0.9);
+}
+
+#cuit[readonly] {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+
+.fila-busqueda-cliente {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.fila-busqueda-cliente .campo-busqueda {
+    flex: 1;
+    min-width: 0;
+    position: relative;
+}
+
+.fila-busqueda-cliente input {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.fila-busqueda-cliente button {
+    flex-shrink: 0;
+}
+
+
+/* =====================================
+   PRODUCTOS - BÚSQUEDA
+   ===================================== */
+
+.fila-busqueda-producto {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    min-width: 0;
+}
+
+.fila-busqueda-producto .campo-busqueda {
+    flex: 1;
+    min-width: 0;
+}
+
+.fila-busqueda-producto button {
+    flex-shrink: 0;
+}
+
+.coincidencias:empty {
+    display: none;
+}
+
+.coincidencias .coincidencia {
+    display: block;
+    width: 100%;
+    border: none;
+    text-align: left;
+    background: white;
+}
+
+.coincidencias .coincidencia:hover {
+    background: #eee;
+}
+
+/* =====================================
+   PRODUCTOS - DIÁLOGO MODAL
+   ===================================== */
+
+#dialogoProductos {
+    width: min(90%, 550px);
+    max-height: 80vh;
+    padding: 24px;
+    overflow-y: auto;
+    border: 1px solid #888;
+    border-radius: 8px;
+}
+
+#dialogoProductos::backdrop {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+#filtroProductos {
+    width: 100%;
+    margin: 12px 0;
+    padding: 10px;
+}
+
+#resultadosProductos {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 16px;
+}
+
+.resultado-producto {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 6px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.resultado-producto:hover {
+    filter: brightness(0.9);
+}
+
+/* =====================================
+   RESPONSIVE
+   ===================================== */
+
+@media (max-width: 600px) {
+    .seccion {
+        margin: 12px;
+        padding: 15px;
+    }
+
+    form {
+        grid-template-columns: 1fr;
+    }
+
+    form > button {
+        grid-column: 1;
+    }
+
+    .fila-busqueda-producto {
+        flex-wrap: wrap;
+    }
+
+    .fila-busqueda-producto > button {
+        width: 100%;
+    }
+
+    #dialogoProductos {
+        width: 95%;
+        padding: 16px;
+    }
+}

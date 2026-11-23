@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/estilos.css">
+
+    <title>Gestión de Pedidos</title>
+</head>
+
+<body>
+
+    <h1>Gestión de Pedidos</h1>
+
+    <!-- permite elegir el formulario que se muestra en la pagina -->
+    <nav>
+        <button type="button" onclick="mostrarSeccion('seccionClientes')">
+            Clientes
+        </button>
+
+        <button type="button" onclick="mostrarSeccion('seccionProductos')">
+            Productos
+        </button>
+
+        <button type="button" onclick="mostrarSeccion('seccionPedidos')">
+            Pedidos
+        </button>
+    </nav>
+
+
+    <!-- CLIENTES -->
+
+
+<section id="seccionClientes" class="seccion activa">
+
+    <h2>Gestión de Clientes</h2>
+
+    <p id="mensaje"></p>
+
+    <form id="formCliente">
+
+	
+<label for="cuit">CUIT</label>
+
+<div class="fila-busqueda-cliente">
+    <div class="campo-busqueda">
+        <input
+            id="cuit"
+            type="text"
+            maxlength="11"
+            autocomplete="off"
+            required
+        >
+        <div id="coincidenciasCuit" class="coincidencias"></div>
+    </div>
+
+    <button type="button" id="abrirBusquedaCliente">
+        Buscar
+    </button>
+</div>
+	
+
+        <label for="razonSocial">Razón Social</label>
+        <input id="razonSocial" type="text" maxlength="60" required>
+
+        <label for="domicilio">Domicilio</label>
+        <input id="domicilio" type="text" maxlength="60" required>
+
+        <label for="localidad">Localidad</label>
+        <input id="localidad" type="text" maxlength="40" required>
+
+        <label for="cp">Código Postal</label>
+        <input id="cp" type="text" maxlength="10" required>
+
+        <label for="celular">Celular</label>
+        <input id="celular" type="text" maxlength="12">
+
+        <label for="email">Email</label>
+        <input id="email" type="text" maxlength="100">
+
+        <button type="submit" id="guardarCliente">
+            Guardar Cliente
+        </button>
+
+        <button type="button" id="nuevoCliente">
+            Nuevo Cliente
+        </button>
+
+    </form>
+
+    <!-- permite buscar y seleccionar un cliente para modificar sus datos -->
+    <dialog id="dialogoClientes">
+        <h3>Buscar cliente</h3>
+
+        <label for="filtroClientes">Buscar por CUIT, razón social,
+            domicilio o localidad</label>
+
+        <input id="filtroClientes" type="text"
+               autocomplete="off"
+               placeholder="Escriba para buscar...">
+
+        <div id="resultadosClientes"></div>
+
+        <button type="button" id="cerrarBusquedaCliente">
+            Cerrar
+        </button>
+    </dialog>
+
+</section>
+
+
+    <!-- PRODUCTOS -->
+
+    
+<!-- PRODUCTOS -->
+
+<section id="seccionProductos" class="seccion">
+
+    <h2>Gestión de Productos</h2>
+
+    <p id="mensajeProducto"></p>
+
+    <form id="formProducto">
+
+        <label for="codigo">Código</label>
+
+        <div class="fila-busqueda-producto">
+            <div class="campo-busqueda">
+                <input
+                    id="codigo"
+                    type="text"
+                    maxlength="30"
+                    autocomplete="off"
+                    required
+                >
+                <div id="coincidenciasCodigo"
+                     class="coincidencias"></div>
+            </div>
+
+            <button type="button" id="abrirBusquedaProducto">
+                Buscar
+            </button>
+        </div>
+
+        <label for="descripcion">Descripción</label>
+
+        <div class="campo-busqueda">
+            <input id="descripcion"
+                   type="text"
+                   maxlength="50"
+                   autocomplete="off"
+                   required>
+            <div id="coincidenciasDescripcion"
+                 class="coincidencias"></div>
+        </div>
+
+        <label for="stock">Stock</label>
+        <input id="stock" type="number"
+               step="0.01" min="0" max="99999999.99" required>
+
+        <label for="stockMinimo">Stock Mínimo</label>
+        <input id="stockMinimo" type="number"
+               step="0.01" min="0" max="99999999.99" value="0" required>
+
+        <label for="unidad">Unidad</label>
+        <select id="unidad" required>
+            <option value="">Seleccionar</option>
+            <option value="KG">KG</option>
+            <option value="MTS">MTS</option>
+            <option value="LITROS">LITROS</option>
+            <option value="UNIDADES">UNIDADES</option>
+        </select>
+
+        <label for="precio">Precio</label>
+        <input id="precio" type="number"
+               step="0.01" min="0" max="99999999.99" required>
+
+        <button type="submit" id="guardarProducto">
+            Guardar Producto
+        </button>
+
+        <button type="button" id="nuevoProducto">
+            Nuevo Producto
+        </button>
+
+    </form>
+
+    <!-- permite buscar y seleccionar un producto para modificar sus datos -->
+    <dialog id="dialogoProductos">
+        <h3>Buscar producto</h3>
+
+        <label for="filtroProductos">
+            Buscar por código o descripción
+        </label>
+
+        <input
+            id="filtroProductos"
+            type="text"
+            autocomplete="off"
+            placeholder="Escriba para buscar..."
+        >
+
+        <div id="resultadosProductos"></div>
+
+        <button type="button" id="cerrarBusquedaProducto">
+            Cerrar
+        </button>
+    </dialog>
+
+</section>
+
+
+    <!-- PEDIDOS -->
+
+<section id="seccionPedidos" class="seccion">
+
+    <h2>Nuevo Pedido</h2>
+
+    <p id="mensajePedido"></p>
+
+    <form id="formPedido">
+
+        <label for="buscarClientePedido">Cliente</label>
+        <div class="campo-busqueda">
+            <input
+                id="buscarClientePedido"
+                type="text"
+                autocomplete="off"
+                placeholder="CUIT o Razón Social"
+                required
+            >
+            <div id="coincidenciasClientePedido" class="coincidencias"></div>
+        </div>
+
+        <label for="operador">Operador</label>
+        <input
+            id="operador"
+            type="text"
+            maxlength="20"
+            required
+        >
+
+        <h3>Agregar producto</h3>
+
+        <label for="buscarProductoPedido">Producto</label>
+        <div class="campo-busqueda">
+            <input
+                id="buscarProductoPedido"
+                type="text"
+                autocomplete="off"
+                placeholder="Nombre del producto"
+            >
+            <div id="coincidenciasProductoPedido" class="coincidencias"></div>
+        </div>
+
+        <label for="cantidad" id="etiquetaCantidad">Cantidad</label>
+        <input
+            id="cantidad"
+            type="number"
+            step="1"
+            min="1"
+            max="99999999"
+        >
+
+        <button type="button" id="agregarProducto">
+            Agregar producto
+        </button>
+
+        <h3>Detalle</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Unidad</th>
+                    <th>Precio</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+
+            <tbody id="detallePedido"></tbody>
+        </table>
+
+        <button type="submit">
+            GRABAR PEDIDO
+        </button>
+
+    </form>
+
+</section>
+
+    <!-- JAVASCRIPT -->
+
+    <script src="js/clientes.js?v=cp-20261108"></script>
+    <script src="js/productos.js?v=limites-20261108"></script>
+    <script src="js/pedidos.js?v=sin-duplicados-20261108"></script>
+
+    <script>
+        // oculta las otras secciones y muestra la seleccionada sin cambiar de pagina
+        function mostrarSeccion(id) {
+            document.querySelectorAll(".seccion").forEach(seccion => {
+                seccion.classList.remove("activa");
+            });
+
+            document.getElementById(id).classList.add("activa");
+
+            // incluye los clientes y productos que se dieron de alta sin recargar la pagina
+            if (id === "seccionPedidos") {
+                cargarDatosPedido().catch(error => {
+                    mostrarErrorPedido(error.message, buscarProducto);
+                });
+            }
+        }
+    </script>
+
+</body>
+</html>
